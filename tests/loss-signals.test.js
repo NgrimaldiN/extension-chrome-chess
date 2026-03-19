@@ -60,3 +60,24 @@ test("does not lock on a draw screen", () => {
 
   assert.equal(result.shouldLock, false);
 });
+
+test("locks on an English negative rating delta after a game", () => {
+  const result = evaluateLossSignals({
+    pageText: "Game Review. Your new blitz rating is 1688 (-7)",
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("negative-rating-delta"));
+});
+
+test("does not lock when the result screen shows a positive rating change", () => {
+  const result = evaluateLossSignals({
+    pageText: `
+      Black won by checkmate
+      Game Review
+      Your new blitz rating is 1710 (+8)
+    `,
+  });
+
+  assert.equal(result.shouldLock, false);
+});

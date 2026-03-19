@@ -1,12 +1,13 @@
 {
   "name": "no-tilt-chess",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
   "description": "Chrome extension that blocks Chess.com after a daily loss.",
   "scripts": {
     "lint": "node scripts/lint.mjs",
     "test": "node --test",
-    "check": "npm run lint && npm test"
+    "check": "npm run lint && npm test",
+    "package:extension": "node scripts/package-extension.mjs"
   }
 }

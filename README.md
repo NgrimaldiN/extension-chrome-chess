@@ -17,8 +17,14 @@ The extension looks for combinations such as:
 - direct defeat phrases like `You lost` or `Vous avez perdu`
 - winner headlines like `Black won` or `Les Noirs ont gagne`
 - negative rating changes like `(-8)` near rating labels
-- post-game UI hints like `Game Review`, `Analysis`, `Bilan de la partie`
+- post-game UI hints like `Game Review`, `Analysis`, or localized review panels
 - final scores when the local player color can be inferred
+
+## Release assets
+
+- `assets/icons/`: Chrome-ready icons
+- `CHROME_WEB_STORE.md`: ready-to-paste store copy, privacy notes, and publish checklist
+- `npm run package:extension`: builds a clean upload zip in `dist/`
 
 ## Project structure
 
@@ -37,19 +43,20 @@ The extension looks for combinations such as:
 npm run lint
 npm test
 npm run check
+npm run package:extension
 ```
 
 ## Loading the extension
 
 1. Open `chrome://extensions`
-2. Enable Developer mode
+2. Enable Developer Mode
 3. Click Load unpacked
 4. Select this folder
 
 ## Manual verification
 
 1. Load the extension in Chrome.
-2. Open Chess.com while unlocked and confirm the popup says `Surveillance active`.
+2. Open Chess.com while unlocked and confirm the popup says `Watching for losses`.
 3. Finish a game with a visible defeat result or a negative rating delta.
 4. Confirm the current tab is redirected to the block page.
 5. Try opening another Chess.com page and confirm it redirects immediately.

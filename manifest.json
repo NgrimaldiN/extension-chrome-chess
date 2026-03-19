@@ -1,16 +1,27 @@
 {
   "manifest_version": 3,
   "name": "No Tilt Chess",
-  "version": "0.1.0",
-  "description": "Bloque Chess.com jusqu'au lendemain apres une defaite detectee.",
+  "version": "1.0.0",
+  "description": "Blocks Chess.com until tomorrow after a detected loss.",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["*://chess.com/*", "*://*.chess.com/*"],
+  "homepage_url": "https://github.com/NgrimaldiN/extension-chrome-chess",
   "background": {
     "service_worker": "src/background/service-worker.js",
     "type": "module"
   },
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "32": "assets/icons/icon-32.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  },
   "action": {
     "default_title": "No Tilt Chess",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "32": "assets/icons/icon-32.png"
+    },
     "default_popup": "src/popup/popup.html"
   },
   "content_scripts": [

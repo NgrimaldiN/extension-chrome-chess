@@ -5,7 +5,8 @@
   "type": "module",
   "description": "Chrome extension that blocks Chess.com after a daily loss.",
   "scripts": {
+    "lint": "node scripts/lint.mjs",
     "test": "node --test",
-    "check": "node --test"
+    "check": "npm run lint && npm test"
   }
 }

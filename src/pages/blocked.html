@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -11,17 +11,17 @@
       <aside class="analysis-rail">
         <div class="rail-top">
           <p class="rail-brand">No Tilt Chess</p>
-          <p class="status-chip" id="state-chip">Session verrouillée</p>
+          <p class="status-chip" id="state-chip">Session locked</p>
         </div>
 
         <div class="rail-section">
-          <span class="rail-label">Etat</span>
-          <strong id="rail-status">Verrou actif</strong>
+          <span class="rail-label">Status</span>
+          <strong id="rail-status">Lock active</strong>
         </div>
 
         <div class="rail-section">
-          <span class="rail-label">Déverrouillage</span>
-          <strong id="unlock-date">Demain</strong>
+          <span class="rail-label">Unlocks</span>
+          <strong id="unlock-date">Tomorrow</strong>
         </div>
 
         <div class="rail-section">
@@ -30,9 +30,9 @@
         </div>
 
         <div class="rail-section rail-note">
-          <span class="rail-label">Rappel</span>
+          <span class="rail-label">Reminder</span>
           <p>
-            Une seule défaite verrouille Chess.com pour le reste du jour local.
+            One loss locks Chess.com for the rest of the local day.
           </p>
         </div>
       </aside>
@@ -41,22 +41,22 @@
         <div class="board-preview" aria-hidden="true">
           <div class="board-glow"></div>
           <div class="board-grid"></div>
-          <div class="capture-badge" id="session-meter">0 / 1 restante aujourd'hui</div>
+          <div class="capture-badge" id="session-meter">0 / 1 games left today</div>
         </div>
 
         <article class="result-panel">
-          <p class="eyebrow">Protection anti-tilt</p>
-          <h1 id="status-headline">On coupe la session ici.</h1>
+          <p class="eyebrow">Anti-tilt protection</p>
+          <h1 id="status-headline">We stop the session here.</h1>
           <p class="lede" id="status-copy">
-            Une défaite a été détectée. Le site reviendra automatiquement demain.
+            A loss was detected. The site will reopen automatically tomorrow.
           </p>
 
-          <section class="coach-note" aria-label="Conseil">
+          <section class="coach-note" aria-label="Coach note">
             <div class="coach-avatar">NT</div>
             <div class="coach-body">
-              <p class="coach-kicker">Conseil du jour</p>
+              <p class="coach-kicker">Coach note</p>
               <p class="coach-copy" id="coach-copy">
-                Le meilleur rematch est souvent celui qu'on ne joue pas à chaud.
+                The best rematch is often the one you do not play while tilted.
               </p>
             </div>
           </section>
@@ -65,16 +65,16 @@
             <div class="timeline-stop is-current">
               <span class="timeline-dot"></span>
               <div>
-                <strong>Défaite détectée</strong>
-                <p>Le verrou quotidien est actif sur cette journée locale.</p>
+                <strong>Loss detected</strong>
+                <p>The daily lock is active for the current local day.</p>
               </div>
             </div>
 
             <div class="timeline-stop">
               <span class="timeline-dot"></span>
               <div>
-                <strong id="unlock-label">Réouverture demain</strong>
-                <p>Retour automatique sans action manuelle.</p>
+                <strong id="unlock-label">Unlocks tomorrow</strong>
+                <p>Access returns automatically with no manual reset.</p>
               </div>
             </div>
           </div>

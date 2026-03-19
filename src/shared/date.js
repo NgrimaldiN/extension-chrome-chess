@@ -38,3 +38,14 @@ export function formatDateKeyForFrenchCopy(dateKey) {
     timeZone: "UTC",
   }).format(date);
 }
+
+export function formatDateKeyForEnglishCopy(dateKey) {
+  const date = parseDateKey(dateKey);
+
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}

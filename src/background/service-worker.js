@@ -1,5 +1,5 @@
 import { buildBlockedPageUrl, isChessUrl } from "../shared/chess-url.js";
-import { formatDateKeyForFrenchCopy } from "../shared/date.js";
+import { formatDateKeyForEnglishCopy } from "../shared/date.js";
 import { createDailyLock, getUnlockDateKey, isLockActive } from "../shared/lock-state.js";
 
 const LOCK_STORAGE_KEY = "dailyLock";
@@ -49,7 +49,7 @@ function serializeLockStatus(lockState) {
     lockState,
     unlockDateKey,
     unlockDateLabel: unlockDateKey
-      ? formatDateKeyForFrenchCopy(unlockDateKey)
+      ? formatDateKeyForEnglishCopy(unlockDateKey)
       : null,
   };
 }
@@ -101,7 +101,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           ...serializeLockStatus(lockState),
         };
 
-        if (sender.tab?.id) {
+        if (sender.tab?.id && !message.deferRedirect) {
           await chrome.tabs.update(sender.tab.id, {
             url: response.blockedUrl,
           });

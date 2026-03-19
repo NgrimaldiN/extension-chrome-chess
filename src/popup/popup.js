@@ -1,25 +1,25 @@
-import { formatDateKeyForFrenchCopy } from "../shared/date.js";
+import { formatDateKeyForEnglishCopy } from "../shared/date.js";
 
 function setActiveState() {
   document.body.dataset.state = "active";
 
-  document.getElementById("status-chip").textContent = "Actif";
-  document.getElementById("status-title").textContent = "Surveillance active";
+  document.getElementById("status-chip").textContent = "Active";
+  document.getElementById("status-title").textContent = "Watching for losses";
   document.getElementById("status-copy").textContent =
-    "L'extension surveille Chess.com et verrouille l'accès après une seule défaite dans la journée.";
-  document.getElementById("status-value").textContent = "Actif";
-  document.getElementById("unlock-value").textContent = "Immédiat";
+    "The extension watches Chess.com and locks access after a single loss in the current day.";
+  document.getElementById("status-value").textContent = "Active";
+  document.getElementById("unlock-value").textContent = "Immediate";
 }
 
 function setLockedState(status) {
   document.body.dataset.state = "locked";
 
-  document.getElementById("status-chip").textContent = "Bloqué";
-  document.getElementById("status-title").textContent = "Accès verrouillé";
+  document.getElementById("status-chip").textContent = "Locked";
+  document.getElementById("status-title").textContent = "Access locked";
   document.getElementById("status-copy").textContent =
-    "Une défaite a déjà été détectée aujourd'hui. Chess.com reviendra automatiquement demain.";
-  document.getElementById("status-value").textContent = "Verrou actif";
-  document.getElementById("unlock-value").textContent = formatDateKeyForFrenchCopy(
+    "A loss has already been detected today. Chess.com will reopen automatically tomorrow.";
+  document.getElementById("status-value").textContent = "Lock active";
+  document.getElementById("unlock-value").textContent = formatDateKeyForEnglishCopy(
     status.unlockDateKey,
   );
 }

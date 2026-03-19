@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   addDaysToDateKey,
+  formatDateKeyForEnglishCopy,
   formatDateKeyForFrenchCopy,
   toLocalDateKey,
 } from "../src/shared/date.js";
@@ -21,5 +22,12 @@ test("formatDateKeyForFrenchCopy produces a friendly label", () => {
   assert.equal(
     formatDateKeyForFrenchCopy("2026-03-20"),
     "20 mars 2026",
+  );
+});
+
+test("formatDateKeyForEnglishCopy produces an English label", () => {
+  assert.equal(
+    formatDateKeyForEnglishCopy("2026-03-20"),
+    "March 20, 2026",
   );
 });

@@ -1,4 +1,4 @@
-import { formatDateKeyForFrenchCopy } from "../shared/date.js";
+import { formatDateKeyForEnglishCopy } from "../shared/date.js";
 
 function shortenUrl(url) {
   if (!url) {
@@ -17,34 +17,34 @@ function shortenUrl(url) {
 function setLockedState(status) {
   document.body.dataset.state = "locked";
 
-  document.getElementById("state-chip").textContent = "Session verrouillée";
-  document.getElementById("rail-status").textContent = "Verrou actif";
-  document.getElementById("status-headline").textContent = "On coupe la session ici.";
+  document.getElementById("state-chip").textContent = "Session locked";
+  document.getElementById("rail-status").textContent = "Lock active";
+  document.getElementById("status-headline").textContent = "We stop the session here.";
   document.getElementById("status-copy").textContent =
-    "Une défaite a été détectée aujourd'hui. Le site reviendra automatiquement demain, quand la journée locale changera.";
+    "A loss was detected today. The site will reopen automatically tomorrow when the local day changes.";
   document.getElementById("coach-copy").textContent =
-    "Le meilleur rematch est souvent celui qu'on ne joue pas à chaud. La série s'arrête ici, la prochaine session repartira propre.";
-  document.getElementById("unlock-date").textContent = formatDateKeyForFrenchCopy(
+    "The best rematch is often the one you skip while tilted. The streak ends here, and the next session starts clean.";
+  document.getElementById("unlock-date").textContent = formatDateKeyForEnglishCopy(
     status.unlockDateKey,
   );
   document.getElementById("unlock-label").textContent =
-    `Réouverture le ${formatDateKeyForFrenchCopy(status.unlockDateKey)}`;
-  document.getElementById("session-meter").textContent = "0 / 1 restante aujourd'hui";
+    `Unlocks on ${formatDateKeyForEnglishCopy(status.unlockDateKey)}`;
+  document.getElementById("session-meter").textContent = "0 / 1 games left today";
 }
 
 function setInactiveState() {
   document.body.dataset.state = "inactive";
 
-  document.getElementById("state-chip").textContent = "Verrou levé";
-  document.getElementById("rail-status").textContent = "Accès disponible";
-  document.getElementById("status-headline").textContent = "La session est de nouveau ouverte.";
+  document.getElementById("state-chip").textContent = "Lock cleared";
+  document.getElementById("rail-status").textContent = "Access available";
+  document.getElementById("status-headline").textContent = "The session is open again.";
   document.getElementById("status-copy").textContent =
-    "Le verrou quotidien n'est plus actif. Chess.com est à nouveau accessible.";
+    "The daily lock is no longer active. Chess.com is available again.";
   document.getElementById("coach-copy").textContent =
-    "Tu repars sur un nouveau jour local. Le compteur est revenu à zéro.";
-  document.getElementById("unlock-date").textContent = "Déjà disponible";
-  document.getElementById("unlock-label").textContent = "Accès rétabli immédiatement";
-  document.getElementById("session-meter").textContent = "Accès disponible";
+    "You are starting a new local day. The counter is back to zero.";
+  document.getElementById("unlock-date").textContent = "Available now";
+  document.getElementById("unlock-label").textContent = "Access restored immediately";
+  document.getElementById("session-meter").textContent = "Access available";
 }
 
 async function render() {

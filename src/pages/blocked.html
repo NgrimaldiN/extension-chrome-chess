@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>No Tilt Chess</title>
+    <link rel="stylesheet" href="./blocked.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="card">
+        <p class="eyebrow">Session verrouillée</p>
+        <h1>Chess.com est fermé pour aujourd'hui.</h1>
+        <p class="lede" id="status-copy">
+          Une défaite a été détectée. Retour autorisé demain.
+        </p>
+        <div class="meta">
+          <p><span>Déverrouillage</span><strong id="unlock-date">Demain</strong></p>
+          <p><span>Origine</span><strong id="source-url">chess.com</strong></p>
+        </div>
+        <p class="footnote">
+          L'extension se réinitialise automatiquement au prochain jour local.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="./blocked.js"></script>
+  </body>
+</html>

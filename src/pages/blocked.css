@@ -1,0 +1,107 @@
+:root {
+  color-scheme: light;
+  --bg-1: #111111;
+  --bg-2: #2d2015;
+  --card: rgba(255, 244, 225, 0.92);
+  --text: #1c140d;
+  --muted: #5b4c3f;
+  --accent: #9b3d14;
+  --accent-soft: rgba(155, 61, 20, 0.14);
+  --line: rgba(28, 20, 13, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, rgba(210, 143, 74, 0.28), transparent 34%),
+    linear-gradient(135deg, var(--bg-1), var(--bg-2));
+}
+
+.shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.card {
+  width: min(100%, 640px);
+  padding: 32px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--card);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 0.95;
+}
+
+.lede {
+  margin: 20px 0 0;
+  max-width: 42ch;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.meta {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.meta p {
+  margin: 0;
+  padding: 16px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border-radius: 18px;
+  background: var(--accent-soft);
+}
+
+.meta span {
+  color: var(--muted);
+}
+
+.meta strong {
+  text-align: right;
+}
+
+.footnote {
+  margin: 24px 0 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 24px;
+  }
+
+  .meta p {
+    flex-direction: column;
+  }
+
+  .meta strong {
+    text-align: left;
+  }
+}

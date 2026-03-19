@@ -1,0 +1,76 @@
+:root {
+  color-scheme: light;
+  --bg: #efe2c7;
+  --card: rgba(255, 255, 255, 0.72);
+  --text: #1f1711;
+  --muted: #655648;
+  --accent: #875033;
+  --line: rgba(31, 23, 17, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 240px;
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(circle at top right, rgba(135, 80, 51, 0.18), transparent 42%),
+    var(--bg);
+}
+
+.popup {
+  padding: 18px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+h1 {
+  margin: 10px 0 0;
+  font-size: 1.85rem;
+  line-height: 0.98;
+}
+
+.copy {
+  margin: 14px 0 0;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.panel {
+  margin: 18px 0 0;
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+  backdrop-filter: blur(12px);
+}
+
+.panel div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+  text-align: right;
+  font-weight: 700;
+}

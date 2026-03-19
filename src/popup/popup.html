@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>No Tilt Chess</title>
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <main class="popup">
+      <p class="eyebrow">No Tilt Chess</p>
+      <h1 id="status-title">Surveillance active</h1>
+      <p class="copy" id="status-copy">
+        L'extension surveille Chess.com et verrouille l'accès après une défaite dans la journée.
+      </p>
+      <dl class="panel">
+        <div>
+          <dt>Etat</dt>
+          <dd id="status-value">Actif</dd>
+        </div>
+        <div>
+          <dt>Retour</dt>
+          <dd id="unlock-value">Immediat</dd>
+        </div>
+      </dl>
+    </main>
+    <script type="module" src="./popup.js"></script>
+  </body>
+</html>

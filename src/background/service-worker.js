@@ -116,6 +116,16 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return;
       }
 
+      case "ENFORCE_BLOCK_IF_NEEDED": {
+        if (sender.tab?.id) {
+          sendResponse(await redirectTabIfNeeded(sender.tab.id, message.url));
+          return;
+        }
+
+        sendResponse(await resolveBlockStatus(message.url));
+        return;
+      }
+
       case "GET_LOCK_STATUS": {
         sendResponse(serializeLockStatus(await readActiveLock()));
         return;

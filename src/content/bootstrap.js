@@ -22,9 +22,9 @@ function inferPlayerColor(root) {
   return "unknown";
 }
 
-async function shouldBlockCurrentPage() {
+async function requestBlockEnforcement() {
   return chrome.runtime.sendMessage({
-    type: "SHOULD_BLOCK",
+    type: "ENFORCE_BLOCK_IF_NEEDED",
     url: window.location.href,
   });
 }
@@ -60,14 +60,8 @@ export async function bootstrapContentScript() {
   let lossReported = false;
 
   async function enforceBlockIfNeeded() {
-    const status = await shouldBlockCurrentPage();
-
-    if (!status?.shouldBlock || !status.blockedUrl) {
-      return false;
-    }
-
-    window.location.replace(status.blockedUrl);
-    return true;
+    const status = await requestBlockEnforcement();
+    return Boolean(status?.shouldBlock);
   }
 
   async function analyzePage() {
@@ -87,15 +81,11 @@ export async function bootstrapContentScript() {
 
     lossReported = true;
 
-    const status = await chrome.runtime.sendMessage({
+    await chrome.runtime.sendMessage({
       type: "LOSS_DETECTED",
       url: window.location.href,
       evaluation,
     });
-
-    if (status?.blockedUrl) {
-      window.location.replace(status.blockedUrl);
-    }
   }
 
   function scheduleAnalysis() {

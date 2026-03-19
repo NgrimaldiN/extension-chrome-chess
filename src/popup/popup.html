@@ -14,28 +14,35 @@
         <div class="hero-top">
           <div class="board-mini" aria-hidden="true">
             <div class="board-mini-grid"></div>
-            <div class="board-mini-dot"></div>
+            <div class="board-mini-piece">
+              <svg viewBox="0 0 64 64" role="presentation">
+                <circle cx="32" cy="17" r="9"></circle>
+                <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
+                <rect x="18" y="52" width="28" height="6" rx="3"></rect>
+                <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+              </svg>
+            </div>
           </div>
 
-        <div class="hero-copy">
-          <p class="status-chip" id="status-chip">Active</p>
-          <h1 id="status-title">Watching for losses</h1>
+          <div class="hero-copy">
+            <p class="status-chip" id="status-chip">Ready</p>
+            <h1 id="status-title">Ready for the next game</h1>
+          </div>
         </div>
-      </div>
 
-      <p class="hero-text" id="status-copy">
-          The extension watches Chess.com and locks access after one loss in the current day.
-      </p>
+        <p class="hero-text" id="status-copy">
+          If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.
+        </p>
       </header>
 
       <section class="status-panel" aria-label="Status">
         <div class="status-row">
           <span>Status</span>
-          <strong id="status-value">Active</strong>
+          <strong id="status-value">Watching</strong>
         </div>
         <div class="status-row">
           <span>Unlocks</span>
-          <strong id="unlock-value">Immediate</strong>
+          <strong id="unlock-value">If needed</strong>
         </div>
         <div class="status-row">
           <span>Scope</span>
@@ -44,11 +51,11 @@
       </section>
 
       <section class="signal-strip" aria-label="Signals being watched">
-        <p class="signal-kicker">Signals being watched</p>
+        <p class="signal-kicker">Looks for</p>
         <div class="signal-grid">
-          <span>Final result</span>
-          <span>Negative rating</span>
-          <span>Review / analysis</span>
+          <span>Loss result</span>
+          <span>Rating drop</span>
+          <span>Review screen</span>
         </div>
       </section>
     </main>

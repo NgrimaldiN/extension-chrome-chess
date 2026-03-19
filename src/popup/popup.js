@@ -3,22 +3,22 @@ import { formatDateKeyForEnglishCopy } from "../shared/date.js";
 function setActiveState() {
   document.body.dataset.state = "active";
 
-  document.getElementById("status-chip").textContent = "Active";
-  document.getElementById("status-title").textContent = "Watching for losses";
+  document.getElementById("status-chip").textContent = "Ready";
+  document.getElementById("status-title").textContent = "Ready for the next game";
   document.getElementById("status-copy").textContent =
-    "The extension watches Chess.com and locks access after a single loss in the current day.";
-  document.getElementById("status-value").textContent = "Active";
-  document.getElementById("unlock-value").textContent = "Immediate";
+    "If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.";
+  document.getElementById("status-value").textContent = "Watching";
+  document.getElementById("unlock-value").textContent = "If needed";
 }
 
 function setLockedState(status) {
   document.body.dataset.state = "locked";
 
   document.getElementById("status-chip").textContent = "Locked";
-  document.getElementById("status-title").textContent = "Access locked";
+  document.getElementById("status-title").textContent = "Locked for today";
   document.getElementById("status-copy").textContent =
-    "A loss has already been detected today. Chess.com will reopen automatically tomorrow.";
-  document.getElementById("status-value").textContent = "Lock active";
+    "A loss was detected today. Chess.com will reopen automatically tomorrow.";
+  document.getElementById("status-value").textContent = "Daily lock active";
   document.getElementById("unlock-value").textContent = formatDateKeyForEnglishCopy(
     status.unlockDateKey,
   );

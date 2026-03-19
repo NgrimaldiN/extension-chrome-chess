@@ -1,7 +1,7 @@
 import { evaluateLossSignals } from "../shared/loss-signals.js";
 
 const ANALYZE_DELAY_MS = 300;
-const LOCK_TRANSITION_MS = 1100;
+const LOCK_TRANSITION_MS = 2200;
 
 function inferPlayerColor(root) {
   if (
@@ -76,7 +76,7 @@ function injectTransitionStyles() {
         radial-gradient(circle at top left, rgba(123, 153, 170, 0.16), transparent 24%),
         rgba(19, 16, 13, 0.78);
       backdrop-filter: blur(14px);
-      animation: no-tilt-fade-in 220ms ease-out both;
+      animation: no-tilt-fade-in 320ms ease-out both;
     }
 
     #no-tilt-transition * {
@@ -84,8 +84,8 @@ function injectTransitionStyles() {
     }
 
     #no-tilt-transition .nt-card {
-      width: min(100%, 420px);
-      padding: 24px;
+      width: min(100%, 448px);
+      padding: 26px;
       border-radius: 24px;
       border: 1px solid rgba(255, 244, 225, 0.14);
       color: #f6efdf;
@@ -139,7 +139,7 @@ function injectTransitionStyles() {
     }
 
     #no-tilt-transition .nt-progress {
-      margin-top: 18px;
+      margin-top: 20px;
       height: 10px;
       border-radius: 999px;
       overflow: hidden;
@@ -156,7 +156,7 @@ function injectTransitionStyles() {
     }
 
     #no-tilt-transition .nt-footnote {
-      margin-top: 12px;
+      margin-top: 14px;
       color: #aa9c86;
       font-size: 13px;
       letter-spacing: 0.03em;
@@ -203,13 +203,13 @@ async function playLockTransition() {
   overlay.setAttribute("aria-live", "assertive");
   overlay.innerHTML = `
     <section class="nt-card" aria-label="Locking Chess.com for today">
-      <div class="nt-chip">Tilt lock engaged</div>
-      <h2>Closing today's session...</h2>
-      <p>No Tilt Chess detected a loss and is moving you to the lock screen for the rest of the day.</p>
+      <div class="nt-chip">Cooldown started</div>
+      <h2>Ending today's run...</h2>
+      <p>A loss was detected on Chess.com. No Tilt Chess is locking the site for the rest of the day.</p>
       <div class="nt-progress" aria-hidden="true">
         <div class="nt-progress-bar"></div>
       </div>
-      <p class="nt-footnote">A cleaner next session starts tomorrow.</p>
+      <p class="nt-footnote">Redirecting to your cooldown screen.</p>
     </section>
   `;
 
@@ -221,7 +221,7 @@ async function playLockTransition() {
     "(prefers-reduced-motion: reduce)",
   )?.matches;
 
-  await wait(shouldReduceMotion ? 180 : LOCK_TRANSITION_MS);
+  await wait(shouldReduceMotion ? 360 : LOCK_TRANSITION_MS);
 }
 
 export async function bootstrapContentScript() {

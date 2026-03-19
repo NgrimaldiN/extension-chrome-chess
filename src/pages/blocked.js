@@ -17,34 +17,34 @@ function shortenUrl(url) {
 function setLockedState(status) {
   document.body.dataset.state = "locked";
 
-  document.getElementById("state-chip").textContent = "Session locked";
-  document.getElementById("rail-status").textContent = "Lock active";
-  document.getElementById("status-headline").textContent = "We stop the session here.";
+  document.getElementById("state-chip").textContent = "Locked for today";
+  document.getElementById("rail-status").textContent = "Daily lock active";
+  document.getElementById("status-headline").textContent = "Today's session is over.";
   document.getElementById("status-copy").textContent =
-    "A loss was detected today. The site will reopen automatically tomorrow when the local day changes.";
+    "A loss was detected on Chess.com. Take the reset now and come back tomorrow with a clean slate.";
   document.getElementById("coach-copy").textContent =
-    "The best rematch is often the one you skip while tilted. The streak ends here, and the next session starts clean.";
+    "Use the cooldown. Quick rematches usually cost more than they give back.";
   document.getElementById("unlock-date").textContent = formatDateKeyForEnglishCopy(
     status.unlockDateKey,
   );
   document.getElementById("unlock-label").textContent =
-    `Unlocks on ${formatDateKeyForEnglishCopy(status.unlockDateKey)}`;
-  document.getElementById("session-meter").textContent = "0 / 1 games left today";
+    `Back on ${formatDateKeyForEnglishCopy(status.unlockDateKey)}`;
+  document.getElementById("session-meter").textContent = "Daily limit reached";
 }
 
 function setInactiveState() {
   document.body.dataset.state = "inactive";
 
-  document.getElementById("state-chip").textContent = "Lock cleared";
-  document.getElementById("rail-status").textContent = "Access available";
-  document.getElementById("status-headline").textContent = "The session is open again.";
+  document.getElementById("state-chip").textContent = "Ready again";
+  document.getElementById("rail-status").textContent = "Access restored";
+  document.getElementById("status-headline").textContent = "The board is live again.";
   document.getElementById("status-copy").textContent =
-    "The daily lock is no longer active. Chess.com is available again.";
+    "The daily lock has expired. Chess.com is available again.";
   document.getElementById("coach-copy").textContent =
-    "You are starting a new local day. The counter is back to zero.";
+    "Fresh day, fresh session. The counter is back at zero.";
   document.getElementById("unlock-date").textContent = "Available now";
-  document.getElementById("unlock-label").textContent = "Access restored immediately";
-  document.getElementById("session-meter").textContent = "Access available";
+  document.getElementById("unlock-label").textContent = "No active lock";
+  document.getElementById("session-meter").textContent = "No lock set";
 }
 
 async function render() {

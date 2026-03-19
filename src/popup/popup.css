@@ -1,7 +1,7 @@
 :root {
   color-scheme: dark;
-  --bg-deep: #1b1713;
-  --bg-panel: rgba(38, 33, 27, 0.98);
+  --bg-deep: #17130f;
+  --bg-panel: rgba(35, 30, 25, 0.98);
   --bg-soft: rgba(255, 255, 255, 0.05);
   --line: rgba(255, 243, 220, 0.12);
   --line-strong: rgba(255, 243, 220, 0.18);
@@ -10,7 +10,7 @@
   --text-dim: #aa9c86;
   --green: #82a84e;
   --green-strong: #94b95a;
-  --blue: #7b99aa;
+  --warning: #c6795f;
   --board-light: #efe0be;
   --board-dark: #7a99ab;
   --shadow: rgba(0, 0, 0, 0.38);
@@ -31,9 +31,9 @@ body {
   font-family: "Trebuchet MS", "Avenir Next Condensed", Verdana, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top right, rgba(148, 185, 90, 0.14), transparent 28%),
-    radial-gradient(circle at top left, rgba(123, 153, 170, 0.12), transparent 24%),
-    linear-gradient(180deg, #2b261f 0%, #211d18 58%, #17130f 100%);
+    radial-gradient(circle at top right, rgba(148, 185, 90, 0.12), transparent 28%),
+    radial-gradient(circle at top left, rgba(123, 153, 170, 0.1), transparent 24%),
+    linear-gradient(180deg, #2a241e 0%, #201b16 58%, #15110d 100%);
 }
 
 .popup-shell {
@@ -63,13 +63,13 @@ body {
 
 .hero {
   padding: 18px 18px 20px;
-  border-radius: 26px;
+  border-radius: 22px;
   border: 1px solid var(--line);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 26%),
-    linear-gradient(180deg, rgba(18, 16, 13, 0.9), rgba(33, 28, 23, 0.94));
-  box-shadow: 0 18px 50px var(--shadow);
-  animation: rise-in 520ms cubic-bezier(0.18, 0.88, 0.32, 1) both;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 24%),
+    linear-gradient(180deg, rgba(18, 16, 13, 0.92), rgba(31, 27, 22, 0.95));
+  box-shadow: 0 16px 42px var(--shadow);
+  animation: rise-in 360ms ease-out both;
 }
 
 .hero-brand {
@@ -93,7 +93,7 @@ body {
   position: relative;
   width: 92px;
   aspect-ratio: 1;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -113,15 +113,18 @@ body {
   background-color: var(--board-light);
 }
 
-.board-mini-dot {
+.board-mini-piece {
   position: absolute;
-  right: 14px;
-  bottom: 14px;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--green-strong), #678538);
-  box-shadow: 0 0 0 8px rgba(130, 168, 78, 0.16);
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+.board-mini-piece svg {
+  width: 36px;
+  height: 36px;
+  fill: rgba(255, 248, 238, 0.94);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.18));
 }
 
 .hero-copy {
@@ -147,7 +150,7 @@ body {
 .hero h1 {
   margin: 10px 0 0;
   font-family: "Avenir Next Condensed", "Trebuchet MS", sans-serif;
-  font-size: 2rem;
+  font-size: 1.95rem;
   line-height: 0.95;
   letter-spacing: -0.04em;
 }
@@ -161,7 +164,7 @@ body {
 .status-panel {
   margin-top: 14px;
   padding: 14px 16px;
-  border-radius: 20px;
+  border-radius: 18px;
   border: 1px solid var(--line);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 100%),
@@ -177,13 +180,13 @@ body {
   border-bottom: 1px solid var(--line);
 }
 
+.status-row:first-child {
+  padding-top: 4px;
+}
+
 .status-row:last-child {
   border-bottom: 0;
   padding-bottom: 4px;
-}
-
-.status-row:first-child {
-  padding-top: 4px;
 }
 
 .status-row span {
@@ -197,10 +200,10 @@ body {
 .signal-strip {
   margin-top: 14px;
   padding: 16px;
-  border-radius: 20px;
+  border-radius: 18px;
   border: 1px solid var(--line-strong);
   background:
-    linear-gradient(180deg, rgba(123, 153, 170, 0.08), transparent 100%),
+    linear-gradient(180deg, rgba(123, 153, 170, 0.06), transparent 100%),
     rgba(19, 17, 14, 0.78);
 }
 
@@ -237,20 +240,19 @@ body[data-state="locked"] .status-chip {
   color: #ffe2d7;
 }
 
-body[data-state="locked"] .board-mini-dot {
-  background: linear-gradient(180deg, #d06d4f, #8f3825);
-  box-shadow: 0 0 0 8px rgba(208, 109, 79, 0.16);
+body[data-state="locked"] .board-mini-piece svg {
+  fill: rgba(255, 230, 219, 0.96);
 }
 
 @keyframes rise-in {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.985);
+    transform: translateY(12px);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 

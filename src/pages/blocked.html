@@ -11,12 +11,12 @@
       <aside class="analysis-rail">
         <div class="rail-top">
           <p class="rail-brand">No Tilt Chess</p>
-          <p class="status-chip" id="state-chip">Session locked</p>
+          <p class="status-chip" id="state-chip">Locked for today</p>
         </div>
 
         <div class="rail-section">
           <span class="rail-label">Status</span>
-          <strong id="rail-status">Lock active</strong>
+          <strong id="rail-status">Daily lock active</strong>
         </div>
 
         <div class="rail-section">
@@ -30,55 +30,70 @@
         </div>
 
         <div class="rail-section rail-note">
-          <span class="rail-label">Reminder</span>
+          <span class="rail-label">Detection</span>
           <p>
-            One loss locks Chess.com for the rest of the local day.
+            Only the current Chess.com result screen is read. Your full history is not scanned.
           </p>
         </div>
       </aside>
 
       <section class="board-stage">
-        <div class="board-preview" aria-hidden="true">
-          <div class="board-glow"></div>
-          <div class="board-grid"></div>
-          <div class="capture-badge" id="session-meter">0 / 1 games left today</div>
-        </div>
-
-        <article class="result-panel">
-          <p class="eyebrow">Anti-tilt protection</p>
-          <h1 id="status-headline">We stop the session here.</h1>
-          <p class="lede" id="status-copy">
-            A loss was detected. The site will reopen automatically tomorrow.
-          </p>
-
-          <section class="coach-note" aria-label="Coach note">
-            <div class="coach-avatar">NT</div>
-            <div class="coach-body">
-              <p class="coach-kicker">Coach note</p>
-              <p class="coach-copy" id="coach-copy">
-                The best rematch is often the one you do not play while tilted.
-              </p>
-            </div>
-          </section>
-
-          <div class="timeline">
-            <div class="timeline-stop is-current">
-              <span class="timeline-dot"></span>
-              <div>
-                <strong>Loss detected</strong>
-                <p>The daily lock is active for the current local day.</p>
-              </div>
-            </div>
-
-            <div class="timeline-stop">
-              <span class="timeline-dot"></span>
-              <div>
-                <strong id="unlock-label">Unlocks tomorrow</strong>
-                <p>Access returns automatically with no manual reset.</p>
-              </div>
-            </div>
+        <div class="board-preview">
+          <div class="board-grid" aria-hidden="true"></div>
+          <div class="board-vignette" aria-hidden="true"></div>
+          <div class="piece-mark" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="presentation">
+              <circle cx="32" cy="17" r="9"></circle>
+              <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
+              <rect x="18" y="52" width="28" height="6" rx="3"></rect>
+              <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+            </svg>
           </div>
-        </article>
+          <div class="capture-badge" id="session-meter">Daily limit reached</div>
+
+          <article class="result-panel">
+            <p class="eyebrow">Daily lock</p>
+            <h1 id="status-headline">Today's session is over.</h1>
+            <p class="lede" id="status-copy">
+              A loss was detected on Chess.com. Take the reset now and come back tomorrow with a clean slate.
+            </p>
+
+            <section class="coach-note" aria-label="Coach note">
+              <div class="coach-avatar">
+                <svg viewBox="0 0 64 64" role="presentation">
+                  <circle cx="32" cy="17" r="9"></circle>
+                  <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
+                  <rect x="18" y="52" width="28" height="6" rx="3"></rect>
+                  <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+                </svg>
+              </div>
+              <div class="coach-body">
+                <p class="coach-kicker">Better next move</p>
+                <p class="coach-copy" id="coach-copy">
+                  Use the cooldown. Quick rematches usually cost more than they give back.
+                </p>
+              </div>
+            </section>
+
+            <div class="timeline">
+              <div class="timeline-stop is-current">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>Loss detected</strong>
+                  <p>The local-day lock started as soon as the result screen appeared.</p>
+                </div>
+              </div>
+
+              <div class="timeline-stop">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong id="unlock-label">Back tomorrow</strong>
+                  <p>No manual reset. Access returns automatically when the day rolls over.</p>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
 

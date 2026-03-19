@@ -101,10 +101,12 @@ export function evaluateLossSignals({
     score += 4;
   }
 
-  if (
-    !reasons.includes("direct-loss-text") &&
-    hasPattern(text, DECISIVE_ENDING_PATTERNS)
-  ) {
+  const hasReliableLossContext =
+    reasons.includes("direct-loss-text") ||
+    reasons.includes("negative-rating-delta") ||
+    reasons.includes("loss-score");
+
+  if (hasReliableLossContext && hasPattern(text, DECISIVE_ENDING_PATTERNS)) {
     reasons.push("decisive-ending-context");
     score += 1;
   }

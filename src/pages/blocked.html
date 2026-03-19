@@ -4,91 +4,125 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>No Tilt Chess</title>
+    <link rel="stylesheet" href="../shared/ui-theme.css" />
     <link rel="stylesheet" href="./blocked.css" />
   </head>
   <body>
-    <main class="arena">
-      <aside class="analysis-rail">
-        <div class="rail-top">
-          <p class="rail-brand">No Tilt Chess</p>
-          <p class="status-chip" id="state-chip">Locked for today</p>
-        </div>
+    <main class="blocked-app">
+      <aside class="rail-panel surface-card">
+        <header class="rail-header">
+          <div class="brand-lockup">
+            <span class="brand-badge" aria-hidden="true">
+              <svg viewBox="0 0 64 64" role="presentation">
+                <circle cx="32" cy="17" r="9"></circle>
+                <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
+                <rect x="18" y="52" width="28" height="6" rx="3"></rect>
+                <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+              </svg>
+            </span>
+            <div class="brand-copy">
+              <p class="brand-label">No Tilt Chess</p>
+              <p class="brand-subtitle">Daily loss lock</p>
+            </div>
+          </div>
 
-        <div class="rail-section">
-          <span class="rail-label">Status</span>
-          <strong id="rail-status">Daily lock active</strong>
-        </div>
+          <p class="state-pill" id="state-chip">Locked for today</p>
+        </header>
 
-        <div class="rail-section">
-          <span class="rail-label">Unlocks</span>
-          <strong id="unlock-date">Tomorrow</strong>
-        </div>
+        <section class="rail-card">
+          <p class="section-kicker">Session status</p>
 
-        <div class="rail-section">
-          <span class="rail-label">Source</span>
-          <strong id="source-url">chess.com</strong>
-        </div>
+          <dl class="rail-stats">
+            <div class="rail-stat">
+              <dt>Status</dt>
+              <dd id="rail-status">Daily cooldown active</dd>
+            </div>
 
-        <div class="rail-section rail-note">
-          <span class="rail-label">Detection</span>
+            <div class="rail-stat">
+              <dt>Unlocks</dt>
+              <dd id="unlock-date">Tomorrow</dd>
+            </div>
+
+            <div class="rail-stat">
+              <dt>Source</dt>
+              <dd id="source-url">chess.com</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="rail-card rail-card--note">
+          <p class="section-kicker">Privacy</p>
           <p>
-            Only the current Chess.com result screen is read. Your full history is not scanned.
+            Only the current Chess.com result screen is read. Your full history is never scanned.
           </p>
-        </div>
+        </section>
       </aside>
 
-      <section class="board-stage">
-        <div class="board-preview">
-          <div class="board-grid" aria-hidden="true"></div>
-          <div class="board-vignette" aria-hidden="true"></div>
-          <div class="piece-mark" aria-hidden="true">
-            <svg viewBox="0 0 64 64" role="presentation">
-              <circle cx="32" cy="17" r="9"></circle>
-              <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
-              <rect x="18" y="52" width="28" height="6" rx="3"></rect>
-              <rect x="16" y="58" width="32" height="4" rx="2"></rect>
-            </svg>
+      <section class="stage-shell">
+        <div class="stage-topbar">
+          <div class="stage-tabs" aria-hidden="true">
+            <span class="stage-tab stage-tab--active">Play</span>
+            <span class="stage-tab">Review</span>
+            <span class="stage-tab">Archive</span>
           </div>
-          <div class="capture-badge" id="session-meter">Daily limit reached</div>
 
-          <article class="result-panel">
-            <p class="eyebrow">Daily lock</p>
-            <h1 id="status-headline">Today's session is over.</h1>
-            <p class="lede" id="status-copy">
-              A loss was detected on Chess.com. Take the reset now and come back tomorrow with a clean slate.
+          <p class="stage-indicator" id="session-meter">Daily limit reached</p>
+        </div>
+
+        <div class="stage-body">
+          <div class="board-visual stage-board" aria-hidden="true">
+            <div class="board-status">
+              <span class="board-status__brand">Chess.com</span>
+              <span class="board-status__pill">Cooldown</span>
+            </div>
+
+            <div class="analysis-float">
+              <span class="analysis-score">0-1</span>
+              <span class="analysis-line analysis-line--long"></span>
+              <span class="analysis-line"></span>
+              <span class="analysis-line analysis-line--short"></span>
+            </div>
+          </div>
+
+          <article class="modal-card surface-card">
+            <p class="section-kicker">Cooldown active</p>
+            <h1 id="status-headline">Tilt protection is on.</h1>
+            <p class="modal-copy" id="status-copy">
+              A loss was detected on Chess.com. Step away now and come back tomorrow with a clean slate.
             </p>
 
-            <section class="coach-note" aria-label="Coach note">
-              <div class="coach-avatar">
+            <section class="coach-callout" aria-label="Coach note">
+              <span class="coach-badge" aria-hidden="true">
                 <svg viewBox="0 0 64 64" role="presentation">
                   <circle cx="32" cy="17" r="9"></circle>
                   <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
                   <rect x="18" y="52" width="28" height="6" rx="3"></rect>
                   <rect x="16" y="58" width="32" height="4" rx="2"></rect>
                 </svg>
-              </div>
-              <div class="coach-body">
-                <p class="coach-kicker">Better next move</p>
-                <p class="coach-copy" id="coach-copy">
-                  Use the cooldown. Quick rematches usually cost more than they give back.
+              </span>
+
+              <div>
+                <p class="coach-label">Coach note</p>
+                <p id="coach-copy">
+                  Use the cooldown. Immediate rematches usually cost more than they win back.
                 </p>
               </div>
             </section>
 
-            <div class="timeline">
-              <div class="timeline-stop is-current">
-                <span class="timeline-dot"></span>
+            <div class="timeline-card" aria-label="Cooldown timeline">
+              <div class="timeline-row">
+                <span class="timeline-tag">Detected</span>
                 <div>
                   <strong>Loss detected</strong>
-                  <p>The local-day lock started as soon as the result screen appeared.</p>
+                  <p>The lock started as soon as the post-game result screen appeared.</p>
                 </div>
               </div>
 
-              <div class="timeline-stop">
-                <span class="timeline-dot"></span>
+              <div class="timeline-row">
+                <span class="timeline-tag">Unlocks</span>
                 <div>
                   <strong id="unlock-label">Back tomorrow</strong>
-                  <p>No manual reset. Access returns automatically when the day rolls over.</p>
+                  <p>Access returns automatically at the next local-day rollover.</p>
                 </div>
               </div>
             </div>

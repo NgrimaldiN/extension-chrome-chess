@@ -4,59 +4,89 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>No Tilt Chess</title>
+    <link rel="stylesheet" href="../shared/ui-theme.css" />
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <main class="popup-shell">
-      <header class="hero">
-        <p class="hero-brand">No Tilt Chess</p>
-
-        <div class="hero-top">
-          <div class="board-mini" aria-hidden="true">
-            <div class="board-mini-grid"></div>
-            <div class="board-mini-piece">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <circle cx="32" cy="17" r="9"></circle>
-                <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
-                <rect x="18" y="52" width="28" height="6" rx="3"></rect>
-                <rect x="16" y="58" width="32" height="4" rx="2"></rect>
-              </svg>
-            </div>
-          </div>
-
-          <div class="hero-copy">
-            <p class="status-chip" id="status-chip">Ready</p>
-            <h1 id="status-title">Ready for the next game</h1>
+    <main class="popup-app">
+      <header class="chrome-bar">
+        <div class="brand-lockup">
+          <span class="brand-badge" aria-hidden="true">
+            <svg viewBox="0 0 64 64" role="presentation">
+              <circle cx="32" cy="17" r="9"></circle>
+              <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
+              <rect x="18" y="52" width="28" height="6" rx="3"></rect>
+              <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+            </svg>
+          </span>
+          <div class="brand-copy">
+            <p class="brand-label">No Tilt Chess</p>
+            <p class="brand-subtitle">Daily loss lock</p>
           </div>
         </div>
 
-        <p class="hero-text" id="status-copy">
-          If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.
-        </p>
+        <p class="state-pill" id="status-chip">Monitoring</p>
       </header>
 
-      <section class="status-panel" aria-label="Status">
-        <div class="status-row">
-          <span>Status</span>
-          <strong id="status-value">Watching</strong>
+      <section class="hero-card surface-card" aria-label="Current status">
+        <div class="hero-copy">
+          <p class="section-kicker" id="hero-accent">Loss cooldown</p>
+          <h1 id="status-title">Ready for the next game</h1>
+          <p class="hero-text" id="status-copy">
+            If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.
+          </p>
         </div>
-        <div class="status-row">
-          <span>Unlocks</span>
-          <strong id="unlock-value">If needed</strong>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-window">
+            <span>Play</span>
+            <span class="visual-window-dot"></span>
+          </div>
+
+          <div class="board-visual visual-stage">
+            <div class="visual-overlay">
+              <span class="visual-tag">Today</span>
+              <span class="visual-line visual-line--long"></span>
+              <span class="visual-line"></span>
+            </div>
+          </div>
         </div>
-        <div class="status-row">
-          <span>Scope</span>
-          <strong>All Chess.com pages</strong>
-        </div>
+
+        <dl class="hero-metrics">
+          <div class="metric-card">
+            <dt>Status</dt>
+            <dd id="status-value">Watching for losses</dd>
+          </div>
+
+          <div class="metric-card">
+            <dt>Unlocks</dt>
+            <dd id="unlock-value">Not locked</dd>
+          </div>
+
+          <div class="metric-card metric-card--wide">
+            <dt>Scope</dt>
+            <dd>All Chess.com pages</dd>
+          </div>
+        </dl>
       </section>
 
-      <section class="signal-strip" aria-label="Signals being watched">
-        <p class="signal-kicker">Looks for</p>
-        <div class="signal-grid">
-          <span>Loss result</span>
-          <span>Rating drop</span>
-          <span>Review screen</span>
+      <section class="info-panel" aria-label="Detection details">
+        <div class="info-head">
+          <div>
+            <p class="section-kicker">Signals watched</p>
+            <h2>Native result cues</h2>
+          </div>
         </div>
+
+        <div class="signal-row">
+          <span class="signal-chip">Result modal</span>
+          <span class="signal-chip">Rating delta</span>
+          <span class="signal-chip">Review panel</span>
+        </div>
+
+        <p class="soft-note">
+          Only the active Chess.com result screen is read. Full match history is never scanned.
+        </p>
       </section>
     </main>
 

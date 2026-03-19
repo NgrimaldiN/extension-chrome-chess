@@ -89,7 +89,7 @@ function injectTransitionStyles() {
       border-radius: 24px;
       border: 1px solid rgba(255, 244, 225, 0.14);
       color: #f6efdf;
-      font-family: "Trebuchet MS", "Avenir Next Condensed", Verdana, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 28%),
         linear-gradient(180deg, rgba(31, 27, 22, 0.98), rgba(19, 16, 13, 0.98));
@@ -102,17 +102,18 @@ function injectTransitionStyles() {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      color: #eff8db;
+      padding: 9px 14px;
+      border-radius: 14px;
+      color: #ebf4df;
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      background:
-        linear-gradient(180deg, rgba(148, 185, 90, 0.24), rgba(104, 134, 61, 0.16)),
-        rgba(19, 16, 13, 0.76);
-      border: 1px solid rgba(148, 185, 90, 0.28);
+      background: rgba(67, 80, 50, 0.94);
+      border: 1px solid rgba(88, 108, 62, 0.62);
+      box-shadow:
+        inset 0 -2px 0 rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
     }
 
     #no-tilt-transition .nt-chip::before {
@@ -121,14 +122,15 @@ function injectTransitionStyles() {
       height: 8px;
       border-radius: 999px;
       background: #95bb55;
-      box-shadow: 0 0 0 6px rgba(149, 187, 85, 0.14);
+      box-shadow: 0 0 0 4px rgba(149, 187, 85, 0.12);
     }
 
     #no-tilt-transition h2 {
       margin: 16px 0 0;
       font-size: clamp(34px, 5vw, 48px);
-      line-height: 0.95;
-      letter-spacing: -0.04em;
+      line-height: 0.98;
+      letter-spacing: -0.03em;
+      font-weight: 800;
     }
 
     #no-tilt-transition p {

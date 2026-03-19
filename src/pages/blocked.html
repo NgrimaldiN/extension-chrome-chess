@@ -7,22 +7,81 @@
     <link rel="stylesheet" href="./blocked.css" />
   </head>
   <body>
-    <main class="shell">
-      <section class="card">
-        <p class="eyebrow">Session verrouillée</p>
-        <h1>Chess.com est fermé pour aujourd'hui.</h1>
-        <p class="lede" id="status-copy">
-          Une défaite a été détectée. Retour autorisé demain.
-        </p>
-        <div class="meta">
-          <p><span>Déverrouillage</span><strong id="unlock-date">Demain</strong></p>
-          <p><span>Origine</span><strong id="source-url">chess.com</strong></p>
+    <main class="arena">
+      <aside class="analysis-rail">
+        <div class="rail-top">
+          <p class="rail-brand">No Tilt Chess</p>
+          <p class="status-chip" id="state-chip">Session verrouillée</p>
         </div>
-        <p class="footnote">
-          L'extension se réinitialise automatiquement au prochain jour local.
-        </p>
+
+        <div class="rail-section">
+          <span class="rail-label">Etat</span>
+          <strong id="rail-status">Verrou actif</strong>
+        </div>
+
+        <div class="rail-section">
+          <span class="rail-label">Déverrouillage</span>
+          <strong id="unlock-date">Demain</strong>
+        </div>
+
+        <div class="rail-section">
+          <span class="rail-label">Source</span>
+          <strong id="source-url">chess.com</strong>
+        </div>
+
+        <div class="rail-section rail-note">
+          <span class="rail-label">Rappel</span>
+          <p>
+            Une seule défaite verrouille Chess.com pour le reste du jour local.
+          </p>
+        </div>
+      </aside>
+
+      <section class="board-stage">
+        <div class="board-preview" aria-hidden="true">
+          <div class="board-glow"></div>
+          <div class="board-grid"></div>
+          <div class="capture-badge" id="session-meter">0 / 1 restante aujourd'hui</div>
+        </div>
+
+        <article class="result-panel">
+          <p class="eyebrow">Protection anti-tilt</p>
+          <h1 id="status-headline">On coupe la session ici.</h1>
+          <p class="lede" id="status-copy">
+            Une défaite a été détectée. Le site reviendra automatiquement demain.
+          </p>
+
+          <section class="coach-note" aria-label="Conseil">
+            <div class="coach-avatar">NT</div>
+            <div class="coach-body">
+              <p class="coach-kicker">Conseil du jour</p>
+              <p class="coach-copy" id="coach-copy">
+                Le meilleur rematch est souvent celui qu'on ne joue pas à chaud.
+              </p>
+            </div>
+          </section>
+
+          <div class="timeline">
+            <div class="timeline-stop is-current">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong>Défaite détectée</strong>
+                <p>Le verrou quotidien est actif sur cette journée locale.</p>
+              </div>
+            </div>
+
+            <div class="timeline-stop">
+              <span class="timeline-dot"></span>
+              <div>
+                <strong id="unlock-label">Réouverture demain</strong>
+                <p>Retour automatique sans action manuelle.</p>
+              </div>
+            </div>
+          </div>
+        </article>
       </section>
     </main>
+
     <script type="module" src="./blocked.js"></script>
   </body>
 </html>

@@ -7,23 +7,52 @@
     <link rel="stylesheet" href="./popup.css" />
   </head>
   <body>
-    <main class="popup">
-      <p class="eyebrow">No Tilt Chess</p>
-      <h1 id="status-title">Surveillance active</h1>
-      <p class="copy" id="status-copy">
-        L'extension surveille Chess.com et verrouille l'accès après une défaite dans la journée.
-      </p>
-      <dl class="panel">
-        <div>
-          <dt>Etat</dt>
-          <dd id="status-value">Actif</dd>
+    <main class="popup-shell">
+      <header class="hero">
+        <p class="hero-brand">No Tilt Chess</p>
+
+        <div class="hero-top">
+          <div class="board-mini" aria-hidden="true">
+            <div class="board-mini-grid"></div>
+            <div class="board-mini-dot"></div>
+          </div>
+
+          <div class="hero-copy">
+            <p class="status-chip" id="status-chip">Actif</p>
+            <h1 id="status-title">Surveillance active</h1>
+          </div>
         </div>
-        <div>
-          <dt>Retour</dt>
-          <dd id="unlock-value">Immediat</dd>
+
+        <p class="hero-text" id="status-copy">
+          L'extension surveille Chess.com et verrouille l'accès après une défaite dans la journée.
+        </p>
+      </header>
+
+      <section class="status-panel" aria-label="Etat">
+        <div class="status-row">
+          <span>Etat</span>
+          <strong id="status-value">Actif</strong>
         </div>
-      </dl>
+        <div class="status-row">
+          <span>Retour</span>
+          <strong id="unlock-value">Immédiat</strong>
+        </div>
+        <div class="status-row">
+          <span>Portée</span>
+          <strong>Tout Chess.com</strong>
+        </div>
+      </section>
+
+      <section class="signal-strip" aria-label="Déclencheurs surveillés">
+        <p class="signal-kicker">Déclencheurs surveillés</p>
+        <div class="signal-grid">
+          <span>Résultat final</span>
+          <span>Elo négatif</span>
+          <span>Review / analyse</span>
+        </div>
+      </section>
     </main>
+
     <script type="module" src="./popup.js"></script>
   </body>
 </html>

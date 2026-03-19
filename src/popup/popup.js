@@ -1,27 +1,38 @@
 import { formatDateKeyForFrenchCopy } from "../shared/date.js";
 
+function setActiveState() {
+  document.body.dataset.state = "active";
+
+  document.getElementById("status-chip").textContent = "Actif";
+  document.getElementById("status-title").textContent = "Surveillance active";
+  document.getElementById("status-copy").textContent =
+    "L'extension surveille Chess.com et verrouille l'accès après une seule défaite dans la journée.";
+  document.getElementById("status-value").textContent = "Actif";
+  document.getElementById("unlock-value").textContent = "Immédiat";
+}
+
+function setLockedState(status) {
+  document.body.dataset.state = "locked";
+
+  document.getElementById("status-chip").textContent = "Bloqué";
+  document.getElementById("status-title").textContent = "Accès verrouillé";
+  document.getElementById("status-copy").textContent =
+    "Une défaite a déjà été détectée aujourd'hui. Chess.com reviendra automatiquement demain.";
+  document.getElementById("status-value").textContent = "Verrou actif";
+  document.getElementById("unlock-value").textContent = formatDateKeyForFrenchCopy(
+    status.unlockDateKey,
+  );
+}
+
 async function renderPopup() {
   const status = await chrome.runtime.sendMessage({ type: "GET_LOCK_STATUS" });
 
-  const statusTitle = document.getElementById("status-title");
-  const statusCopy = document.getElementById("status-copy");
-  const statusValue = document.getElementById("status-value");
-  const unlockValue = document.getElementById("unlock-value");
-
   if (!status?.isLocked || !status.unlockDateKey) {
-    statusTitle.textContent = "Surveillance active";
-    statusCopy.textContent =
-      "L'extension surveille Chess.com et verrouille l'accès apres une defaite dans la journee.";
-    statusValue.textContent = "Actif";
-    unlockValue.textContent = "Immediat";
+    setActiveState();
     return;
   }
 
-  statusTitle.textContent = "Acces bloque";
-  statusCopy.textContent =
-    "Une defaite a deja ete detectee aujourd'hui. Le site redeviendra disponible automatiquement demain.";
-  statusValue.textContent = "Bloque";
-  unlockValue.textContent = formatDateKeyForFrenchCopy(status.unlockDateKey);
+  setLockedState(status);
 }
 
 void renderPopup();

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "No Tilt Chess",
+  "version": "0.1.0",
+  "description": "Bloque Chess.com jusqu'au lendemain apres une defaite detectee.",
+  "permissions": ["storage", "tabs"],
+  "host_permissions": ["*://chess.com/*", "*://*.chess.com/*"],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "No Tilt Chess",
+    "default_popup": "src/popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://chess.com/*", "*://*.chess.com/*"],
+      "js": ["src/content/entry.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/content/bootstrap.js",
+        "src/shared/chess-url.js",
+        "src/shared/date.js",
+        "src/shared/lock-state.js",
+        "src/shared/loss-signals.js"
+      ],
+      "matches": ["*://chess.com/*", "*://*.chess.com/*"]
+    }
+  ]
+}

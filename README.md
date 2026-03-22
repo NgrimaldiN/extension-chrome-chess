@@ -1,6 +1,6 @@
 # No Tilt Chess
 
-Chrome extension that locks Chess.com for the rest of the local day after a detected loss.
+Chrome extension that locks Chess.com for the rest of the local day once your daily defeat limit is reached.
 
 ## What it does
 

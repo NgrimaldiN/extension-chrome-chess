@@ -38,6 +38,7 @@
   - Rebuilt `src/popup/` and `src/pages/blocked.*` from scratch with new markup and styling.
   - Replaced the extension icon source art and regenerated the shipped PNG sizes.
   - Tightened the visual language after feedback by removing the condensed display font, flattening the pill controls, and replacing the colored timeline dots with Chess.com-style status tags.
+  - Applied the user-provided five-color palette, removed the fake top CTA row from the blocked page, and centered a live unlock countdown in the modal.
 - Files created/modified:
   - `src/shared/ui-state.js`
   - `src/shared/ui-theme.css`
@@ -70,7 +71,8 @@
 | Repo init | `git init -b main` | New repository created | Repository initialized successfully | pass |
 | UI-state TDD red run | `npm test -- tests/ui-state.test.js` before `src/shared/ui-state.js` existed | Missing module failure confirms the new test covers unimplemented behavior | `ERR_MODULE_NOT_FOUND` for `src/shared/ui-state.js` | pass |
 | UI-state TDD green run | `npm test -- tests/ui-state.test.js` after implementing the helper | New popup/block-page model tests pass | 4 tests passed | pass |
-| Full validation | `npm run check` | Lint and all tests pass on redesigned assets | 23 tests passed, 0 failed | pass |
+| Countdown TDD green run | `npm test -- tests/date.test.js` after implementing the countdown helper | Countdown formatting passes for active and expired locks | 6 tests passed | pass |
+| Full validation | `npm run check` | Lint and all tests pass on redesigned assets | 25 tests passed, 0 failed | pass |
 | Packaging | `npm run package:extension` | Zip is produced successfully | `dist/no-tilt-chess-v1.0.0.zip` created | pass |
 
 ## Error Log

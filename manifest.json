@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "No Tilt Chess",
   "version": "1.0.0",
-  "description": "Blocks Chess.com until tomorrow after a detected loss.",
+  "description": "Set a daily defeat limit on Chess.com and lock the site until tomorrow once you reach it.",
   "permissions": ["storage", "tabs"],
   "host_permissions": ["*://chess.com/*", "*://*.chess.com/*"],
   "homepage_url": "https://github.com/NgrimaldiN/extension-chrome-chess",

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 
 import {
   addDaysToDateKey,
+  formatCountdownUntilDateKey,
   formatDateKeyForEnglishCopy,
   formatDateKeyForFrenchCopy,
   toLocalDateKey,
@@ -29,5 +30,19 @@ test("formatDateKeyForEnglishCopy produces an English label", () => {
   assert.equal(
     formatDateKeyForEnglishCopy("2026-03-20"),
     "March 20, 2026",
+  );
+});
+
+test("formatCountdownUntilDateKey returns the remaining local time until unlock", () => {
+  assert.equal(
+    formatCountdownUntilDateKey("2026-03-20", new Date(2026, 2, 19, 22, 5, 9)),
+    "01:54:51",
+  );
+});
+
+test("formatCountdownUntilDateKey floors at zero once the unlock day starts", () => {
+  assert.equal(
+    formatCountdownUntilDateKey("2026-03-20", new Date(2026, 2, 20, 0, 0, 0)),
+    "00:00:00",
   );
 });

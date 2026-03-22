@@ -1,26 +1,26 @@
 :root {
   color-scheme: dark;
-  --bg-page: #1f1d1a;
-  --bg-page-deep: #161512;
-  --bg-shell: #262421;
-  --bg-surface: #312e2b;
-  --bg-surface-strong: #3a3632;
-  --bg-surface-soft: #2a2825;
-  --bg-overlay: rgba(17, 16, 14, 0.72);
+  --bg-page: #2c2b29;
+  --bg-page-deep: #2c2b29;
+  --bg-shell: #2c2b29;
+  --bg-surface: #4b4847;
+  --bg-surface-strong: #4b4847;
+  --bg-surface-soft: #4b4847;
+  --bg-overlay: rgba(44, 43, 41, 0.78);
   --line-subtle: rgba(255, 255, 255, 0.07);
   --line-strong: rgba(255, 255, 255, 0.12);
-  --text-strong: #f6f5f1;
-  --text-main: #e4e0d8;
-  --text-soft: #c8c1b6;
-  --text-muted: #a39a8c;
-  --green: #81b64c;
-  --green-strong: #97c65b;
-  --green-deep: #5d8a35;
-  --red: #ca6356;
-  --red-deep: #9f4338;
-  --gold: #c89a43;
-  --board-light: #f1d8b3;
-  --board-dark: #779556;
+  --text-strong: #ffffff;
+  --text-main: rgba(255, 255, 255, 0.92);
+  --text-soft: rgba(255, 255, 255, 0.72);
+  --text-muted: rgba(255, 255, 255, 0.48);
+  --green: #69923e;
+  --green-strong: #69923e;
+  --green-deep: #4e7837;
+  --red: #4b4847;
+  --red-deep: #2c2b29;
+  --gold: #69923e;
+  --board-light: #ffffff;
+  --board-dark: #69923e;
   --shadow-lg: 0 28px 72px rgba(0, 0, 0, 0.38);
   --shadow-md: 0 18px 40px rgba(0, 0, 0, 0.28);
   --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Helvetica, Arial,
@@ -44,8 +44,8 @@ body {
   font-family: var(--font-body);
   color: var(--text-main);
   background:
-    radial-gradient(circle at top left, rgba(129, 182, 76, 0.09), transparent 22%),
-    radial-gradient(circle at top right, rgba(200, 154, 67, 0.09), transparent 28%),
+    radial-gradient(circle at top left, rgba(105, 146, 62, 0.18), transparent 24%),
+    radial-gradient(circle at top right, rgba(78, 120, 55, 0.12), transparent 28%),
     linear-gradient(180deg, var(--bg-page) 0%, var(--bg-page-deep) 100%);
 }
 
@@ -83,7 +83,7 @@ svg {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 40%),
     var(--bg-surface-strong);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .brand-badge svg {
@@ -124,8 +124,8 @@ svg {
   padding: 9px 14px;
   border-radius: 14px;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(74, 61, 56, 0.92);
-  color: #f2ddd7;
+  background: rgba(75, 72, 71, 0.96);
+  color: var(--text-strong);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -156,7 +156,7 @@ svg {
   padding: 8px 11px;
   border-radius: 12px;
   border: 1px solid var(--line-subtle);
-  background: rgba(53, 50, 47, 0.9);
+  background: rgba(75, 72, 71, 0.94);
   color: var(--text-main);
   font-size: 0.82rem;
   font-weight: 600;
@@ -171,7 +171,7 @@ svg {
   border: 1px solid var(--line-subtle);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 100%),
-    rgba(255, 255, 255, 0.025);
+    rgba(75, 72, 71, 0.24);
 }
 
 .coach-badge {
@@ -202,13 +202,10 @@ svg {
   border-radius: 24px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background:
-    linear-gradient(45deg, var(--board-dark) 25%, transparent 25%, transparent 75%, var(--board-dark) 75%, var(--board-dark)),
-    linear-gradient(45deg, var(--board-dark) 25%, transparent 25%, transparent 75%, var(--board-dark) 75%, var(--board-dark));
-  background-size: 76px 76px;
-  background-position:
-    0 0,
-    38px 38px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' preserveAspectRatio='none'%3E%3Cdefs%3E%3Cpattern id='p' width='2' height='2' patternUnits='userSpaceOnUse'%3E%3Crect width='2' height='2' fill='%23ffffff'/%3E%3Crect width='1' height='1' fill='%2369923e'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%2369923e'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='8' height='8' fill='url(%23p)'/%3E%3C/svg%3E");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   background-color: var(--board-light);
   box-shadow:
     inset 0 0 0 1px rgba(0, 0, 0, 0.08),
@@ -234,15 +231,15 @@ svg {
 }
 
 body[data-state="locked"] .state-pill {
-  border-color: rgba(120, 77, 67, 0.66);
-  background: rgba(86, 58, 51, 0.94);
-  color: #f7e0d9;
+  border-color: rgba(255, 255, 255, 0.08);
+  background: rgba(75, 72, 71, 0.96);
+  color: var(--text-strong);
 }
 
 body[data-state="inactive"] .state-pill {
-  border-color: rgba(88, 108, 62, 0.62);
-  background: rgba(67, 80, 50, 0.94);
-  color: #ebf4df;
+  border-color: rgba(78, 120, 55, 0.7);
+  background: rgba(78, 120, 55, 0.94);
+  color: var(--text-strong);
 }
 
 @keyframes surface-enter {

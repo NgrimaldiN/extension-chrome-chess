@@ -9,125 +9,93 @@
   </head>
   <body>
     <main class="blocked-app">
-      <aside class="rail-panel surface-card">
-        <header class="rail-header">
-          <div class="brand-lockup">
-            <span class="brand-badge" aria-hidden="true">
-              <svg viewBox="0 0 64 64" role="presentation">
-                <circle cx="32" cy="17" r="9"></circle>
-                <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
-                <rect x="18" y="52" width="28" height="6" rx="3"></rect>
-                <rect x="16" y="58" width="32" height="4" rx="2"></rect>
+      <aside class="rail-panel">
+        <div class="rail-frame">
+          <header class="rail-brand">
+            <span class="rail-mark" aria-hidden="true">
+              <svg class="rail-mark__icon" viewBox="0 0 512 512" role="presentation">
+                <g transform="translate(76.2 8) scale(1.24)">
+                  <path
+                    class="rail-mark__pawn-shadow"
+                    d="M225 273.7c-55.7-42.6-49.5-79.5-50.2-94.7h34c4-7.4 6-14.2 6-22.8l-38.5-25.4c13.4-9.7 22.1-25.5 22.1-43.3 0-22.4-13.8-41.7-33.4-49.6-6.2-2.5-49.8 141.1-49.8 141.1-.2 3.3-.2 7.6-.2 12.8 0 14.3 35 12.1 33.1 24.7-2.8 18.8-3.4 33.2-19.6 78.4-10.9 30.6-83.8 0-89 15-3.6 10.4-5.5 22.1-5.5 34.7 0 1.3 2.9 21.5 111 21.5s111-20.2 111-21.5c0-30.7-11.4-56-31-70.9z"
+                  ></path>
+                  <path
+                    class="rail-mark__pawn-main"
+                    d="M143 292.8c6-27.4 11.3-56.6 14.6-74.1 4-21.8-29-25.7-42.6-27.7-.6 18.6-5.8 48.9-50.1 82.7-11.9 9.1-20.8 22.1-26 37.9 12 5.8 27.9 9.3 52.5 9.3 15.8 0 45 1.9 51.6-28.1zM166.2 178.9c5.2-13.6 4.6-22.8 4.6-22.8L149 130.7c23.2-9.9 37.2-28.6 37.2-50.3 0-17.3-8.3-32.8-21-42.5-6.2-2.5-13-4-20.1-4-29.5 0-53.4 23.9-53.4 53.5 0 17.8 8.7 33.6 22.1 43.3l-38.5 25.4c0 8.5 2 15.4 6 22.8h84.9z"
+                  ></path>
+                  <path
+                    class="rail-mark__pawn-top"
+                    d="M142 44.9c30.8 4.8-14.2 40.6-28.4 38.9-13.5-1.7-.5-43.4 28.4-38.9z"
+                  ></path>
+                </g>
+                <g transform="translate(76.2 8) scale(1.24)">
+                  <path class="rail-mark__cross" d="M82 116L214 298"></path>
+                  <path class="rail-mark__cross" d="M214 116L82 298"></path>
+                </g>
               </svg>
             </span>
-            <div class="brand-copy">
-              <p class="brand-label">No Tilt Chess</p>
-              <p class="brand-subtitle">Daily loss lock</p>
-            </div>
-          </div>
+            <h1 class="rail-title">No Tilt Chess</h1>
+            <p class="rail-subtitle">Daily loss lock</p>
+            <p class="rail-state" id="state-chip">Locked for today</p>
+          </header>
 
-          <p class="state-pill" id="state-chip">Locked for today</p>
-        </header>
+          <section class="rail-section">
+            <p class="section-kicker">Session status</p>
 
-        <section class="rail-card">
-          <p class="section-kicker">Session status</p>
+            <dl class="rail-stats">
+              <div class="rail-stat">
+                <dt>Status</dt>
+                <dd id="rail-status">Daily cooldown active</dd>
+              </div>
 
-          <dl class="rail-stats">
-            <div class="rail-stat">
-              <dt>Status</dt>
-              <dd id="rail-status">Daily cooldown active</dd>
-            </div>
+              <div class="rail-stat">
+                <dt>Unlocks</dt>
+                <dd id="unlock-date">Tomorrow</dd>
+              </div>
 
-            <div class="rail-stat">
-              <dt>Unlocks</dt>
-              <dd id="unlock-date">Tomorrow</dd>
-            </div>
+              <div class="rail-stat">
+                <dt>Source</dt>
+                <dd id="source-url">chess.com</dd>
+              </div>
+            </dl>
+          </section>
 
-            <div class="rail-stat">
-              <dt>Source</dt>
-              <dd id="source-url">chess.com</dd>
-            </div>
-          </dl>
-        </section>
-
-        <section class="rail-card rail-card--note">
-          <p class="section-kicker">Privacy</p>
-          <p>
-            Only the current Chess.com result screen is read. Your full history is never scanned.
-          </p>
-        </section>
+        </div>
       </aside>
 
       <section class="stage-shell">
-        <div class="stage-topbar">
-          <div class="stage-tabs" aria-hidden="true">
-            <span class="stage-tab stage-tab--active">Play</span>
-            <span class="stage-tab">Review</span>
-            <span class="stage-tab">Archive</span>
-          </div>
+        <div class="stage-board checkerboard-bg" aria-hidden="true"></div>
 
-          <p class="stage-indicator" id="session-meter">Daily limit reached</p>
+        <div class="board-status">
+          <span class="board-status__brand">Chess.com</span>
+          <span class="board-status__pill">Cooldown</span>
         </div>
 
-        <div class="stage-body">
-          <div class="board-visual stage-board" aria-hidden="true">
-            <div class="board-status">
-              <span class="board-status__brand">Chess.com</span>
-              <span class="board-status__pill">Cooldown</span>
-            </div>
+        <div class="score-badge" aria-hidden="true">0-1</div>
 
-            <div class="analysis-float">
-              <span class="analysis-score">0-1</span>
-              <span class="analysis-line analysis-line--long"></span>
-              <span class="analysis-line"></span>
-              <span class="analysis-line analysis-line--short"></span>
-            </div>
-          </div>
-
-          <article class="modal-card surface-card">
+        <article class="modal-card" aria-live="polite">
+          <header class="modal-card__header">
             <p class="section-kicker">Cooldown active</p>
-            <h1 id="status-headline">Tilt protection is on.</h1>
+            <h2 id="status-headline">Tilt protection is on.</h2>
+          </header>
+
+          <div class="modal-card__body">
             <p class="modal-copy" id="status-copy">
               A loss was detected on Chess.com. Step away now and come back tomorrow with a clean slate.
             </p>
 
-            <section class="coach-callout" aria-label="Coach note">
-              <span class="coach-badge" aria-hidden="true">
-                <svg viewBox="0 0 64 64" role="presentation">
-                  <circle cx="32" cy="17" r="9"></circle>
-                  <path d="M24 30c0-4.4 3.6-8 8-8s8 3.6 8 8c0 4.1-2 7.7-4.5 11.1L39 52H25l3.5-10.9C26 37.7 24 34.1 24 30Z"></path>
-                  <rect x="18" y="52" width="28" height="6" rx="3"></rect>
-                  <rect x="16" y="58" width="32" height="4" rx="2"></rect>
-                </svg>
-              </span>
-
-              <div>
-                <p class="coach-label">Coach note</p>
-                <p id="coach-copy">
-                  Use the cooldown. Immediate rematches usually cost more than they win back.
-                </p>
-              </div>
+            <section class="countdown-panel" aria-label="Countdown until unlock">
+              <p class="countdown-label" id="countdown-label">Unlocks in</p>
+              <p class="countdown-value" id="countdown-value">00:00:00</p>
+              <p class="countdown-caption" id="unlock-label">Back tomorrow</p>
             </section>
 
-            <div class="timeline-card" aria-label="Cooldown timeline">
-              <div class="timeline-row">
-                <span class="timeline-tag">Detected</span>
-                <div>
-                  <strong>Loss detected</strong>
-                  <p>The lock started as soon as the post-game result screen appeared.</p>
-                </div>
-              </div>
-
-              <div class="timeline-row">
-                <span class="timeline-tag">Unlocks</span>
-                <div>
-                  <strong id="unlock-label">Back tomorrow</strong>
-                  <p>Access returns automatically at the next local-day rollover.</p>
-                </div>
-              </div>
-            </div>
-          </article>
-        </div>
+            <p class="coach-copy" id="coach-copy">
+              Use the cooldown. Immediate rematches usually cost more than they win back.
+            </p>
+            <p class="modal-footnote">The lock started as soon as the post-game result screen appeared.</p>
+          </div>
+        </article>
       </section>
     </main>
 

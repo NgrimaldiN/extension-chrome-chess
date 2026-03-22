@@ -81,3 +81,54 @@ test("does not lock when the result screen shows a positive rating change", () =
 
   assert.equal(result.shouldLock, false);
 });
+
+test("locks on a Spanish direct loss message", () => {
+  const result = evaluateLossSignals({
+    pageText: "Has perdido por jaque mate. Analisis",
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("direct-loss-text"));
+});
+
+test("locks on a Portuguese post-game result with a negative rating delta", () => {
+  const result = evaluateLossSignals({
+    pageText: `
+      As pretas venceram por xeque-mate
+      Revisao da partida
+      Sua nova classificacao blitz e 1512 (-9)
+    `,
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("winner-headline"));
+  assert.ok(result.reasons.includes("negative-rating-delta"));
+  assert.ok(result.reasons.includes("post-game-context"));
+});
+
+test("locks on a German direct loss message", () => {
+  const result = evaluateLossSignals({
+    pageText: "Du hast durch Schachmatt verloren. Analyse",
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("direct-loss-text"));
+});
+
+test("locks on a Russian direct loss message", () => {
+  const result = evaluateLossSignals({
+    pageText: "Вы проиграли матом. Анализ",
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("direct-loss-text"));
+});
+
+test("locks on a Japanese direct loss message", () => {
+  const result = evaluateLossSignals({
+    pageText: "チェックメイトで負けました 解析",
+  });
+
+  assert.equal(result.shouldLock, true);
+  assert.ok(result.reasons.includes("direct-loss-text"));
+});

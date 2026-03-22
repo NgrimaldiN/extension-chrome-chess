@@ -1,16 +1,16 @@
 html,
 body {
   min-width: 388px;
-  min-height: 620px;
+  min-height: 522px;
 }
 
 body {
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .popup-app {
   position: relative;
-  min-height: 620px;
+  min-height: 522px;
   padding: 16px;
   display: grid;
   gap: 14px;
@@ -18,8 +18,7 @@ body {
 
 .chrome-bar,
 .hero-card,
-.settings-panel,
-.info-panel {
+.settings-panel {
   position: relative;
   z-index: 1;
 }
@@ -29,6 +28,20 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+}
+
+.chrome-bar .brand-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+}
+
+.brand-badge__image {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+  object-position: center;
+  transform: translateY(1px);
 }
 
 .hero-card {
@@ -190,8 +203,7 @@ body {
   grid-column: 1 / -1;
 }
 
-.settings-panel,
-.info-panel {
+.settings-panel {
   padding: 18px;
   border-radius: 24px;
   border: 1px solid var(--line-subtle);
@@ -201,8 +213,7 @@ body {
   animation: surface-enter 300ms ease-out 40ms both;
 }
 
-.settings-head h2,
-.info-head h2 {
+.settings-head h2 {
   margin: 8px 0 0;
   color: var(--text-strong);
   font-size: 1.28rem;
@@ -253,15 +264,7 @@ body {
   line-height: 1.45;
 }
 
-.signal-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.settings-panel .soft-note,
-.info-panel .soft-note {
+.settings-panel .soft-note {
   margin-top: 14px;
 }
 

@@ -1,16 +1,16 @@
 html,
 body {
   min-width: 388px;
-  min-height: 486px;
+  min-height: 620px;
 }
 
 body {
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .popup-app {
   position: relative;
-  min-height: 486px;
+  min-height: 620px;
   padding: 16px;
   display: grid;
   gap: 14px;
@@ -18,6 +18,7 @@ body {
 
 .chrome-bar,
 .hero-card,
+.settings-panel,
 .info-panel {
   position: relative;
   z-index: 1;
@@ -189,6 +190,7 @@ body {
   grid-column: 1 / -1;
 }
 
+.settings-panel,
 .info-panel {
   padding: 18px;
   border-radius: 24px;
@@ -199,6 +201,7 @@ body {
   animation: surface-enter 300ms ease-out 40ms both;
 }
 
+.settings-head h2,
 .info-head h2 {
   margin: 8px 0 0;
   color: var(--text-strong);
@@ -208,6 +211,48 @@ body {
   font-weight: 800;
 }
 
+.limit-setting {
+  display: grid;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.limit-setting__label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.limit-setting__control {
+  display: grid;
+  gap: 8px;
+}
+
+.limit-setting__control select {
+  width: 100%;
+  min-height: 42px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line-subtle);
+  color: var(--text-strong);
+  font: inherit;
+  background: rgba(57, 53, 49, 0.94);
+}
+
+.limit-setting__control select:disabled {
+  color: var(--text-muted);
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+.limit-setting__suffix {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
 .signal-row {
   display: flex;
   flex-wrap: wrap;
@@ -215,18 +260,19 @@ body {
   margin-top: 14px;
 }
 
+.settings-panel .soft-note,
 .info-panel .soft-note {
   margin-top: 14px;
 }
 
 body[data-state="locked"] .visual-window-dot {
-  background: #9d564b;
-  box-shadow: 0 0 0 4px rgba(157, 86, 75, 0.14);
+  background: var(--text-strong);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
 }
 
 body[data-state="locked"] .visual-tag {
-  background: rgba(86, 58, 51, 0.94);
-  color: #f7e0d9;
+  background: rgba(75, 72, 71, 0.94);
+  color: var(--text-strong);
   box-shadow:
     inset 0 -1px 0 rgba(0, 0, 0, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
@@ -234,6 +280,6 @@ body[data-state="locked"] .visual-tag {
 
 body[data-state="locked"] .hero-card::before {
   background:
-    radial-gradient(circle at top right, rgba(202, 99, 86, 0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(75, 72, 71, 0.2), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 28%);
 }

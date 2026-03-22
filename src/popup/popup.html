@@ -70,6 +70,28 @@
         </dl>
       </section>
 
+      <section class="settings-panel" aria-label="Cooldown settings">
+        <div class="settings-head">
+          <div>
+            <p class="section-kicker">Cooldown trigger</p>
+            <h2>Daily defeat limit</h2>
+          </div>
+        </div>
+
+        <div class="limit-setting">
+          <label class="limit-setting__label" for="daily-defeat-limit">Start cooldown after</label>
+          <div class="limit-setting__control">
+            <select id="daily-defeat-limit" name="daily-defeat-limit" aria-describedby="limit-note">
+            </select>
+            <span class="limit-setting__suffix">defeats in one day</span>
+          </div>
+        </div>
+
+        <p class="soft-note" id="limit-note">
+          You can change this anytime before cooldown starts.
+        </p>
+      </section>
+
       <section class="info-panel" aria-label="Detection details">
         <div class="info-head">
           <div>

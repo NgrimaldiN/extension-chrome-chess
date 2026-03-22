@@ -11,10 +11,10 @@ test("buildPopupViewModel shows ready state when there is no active lock", () =>
     bodyState: "active",
     chipLabel: "Monitoring",
     title: "Ready for the next game",
-    copy: "If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.",
-    statusValue: "Watching for losses",
+    copy: "No Tilt Chess will lock Chess.com once you reach 1 defeat today.",
+    statusValue: "0 of 1 defeat used",
     unlockValue: "Not locked",
-    accentLabel: "Loss cooldown",
+    accentLabel: "Daily defeat limit",
   });
 });
 
@@ -23,15 +23,17 @@ test("buildPopupViewModel shows lock timing when the day is locked", () => {
     buildPopupViewModel({
       isLocked: true,
       unlockDateKey: "2026-03-20",
+      todayDefeatCount: 2,
+      dailyDefeatLimit: 2,
     }),
     {
       bodyState: "locked",
       chipLabel: "Locked",
       title: "Daily cooldown is active",
-      copy: "A loss was detected today. Chess.com stays blocked until the next local day.",
-      statusValue: "Cooldown running",
+      copy: "Today's defeat limit was reached. Chess.com stays blocked until the next local day.",
+      statusValue: "2 of 2 defeats used",
       unlockValue: "March 20, 2026",
-      accentLabel: "Loss detected",
+      accentLabel: "Limit reached",
     },
   );
 });
@@ -41,6 +43,8 @@ test("buildBlockedPageViewModel shows unlocked state and shortens the source url
     buildBlockedPageViewModel({
       status: {
         isLocked: false,
+        todayDefeatCount: 0,
+        dailyDefeatLimit: 2,
       },
       sourceUrl: "https://www.chess.com/play/online",
     }),
@@ -50,7 +54,7 @@ test("buildBlockedPageViewModel shows unlocked state and shortens the source url
       railStatus: "Access restored",
       headline: "The board is live again.",
       copy: "The daily lock has expired. Chess.com is available again.",
-      coachCopy: "Fresh day, fresh session. The counter is back at zero.",
+      coachCopy: "Fresh day, fresh session. Your defeat counter is back at zero.",
       unlockDate: "Available now",
       unlockLabel: "No active lock",
       sessionMeter: "No lock set",
@@ -65,15 +69,17 @@ test("buildBlockedPageViewModel shows locked state copy and formatted unlock dat
       status: {
         isLocked: true,
         unlockDateKey: "2026-03-20",
+        todayDefeatCount: 2,
+        dailyDefeatLimit: 2,
       },
       sourceUrl: "",
     }),
     {
       bodyState: "locked",
       chipLabel: "Locked for today",
-      railStatus: "Daily cooldown active",
+      railStatus: "Daily limit reached",
       headline: "Tilt protection is on.",
-      copy: "A loss was detected on Chess.com. Step away now and come back tomorrow with a clean slate.",
+      copy: "Today's defeat limit was reached on Chess.com. Step away now and come back tomorrow with a clean slate.",
       coachCopy: "Use the cooldown. Immediate rematches usually cost more than they win back.",
       unlockDate: "March 20, 2026",
       unlockLabel: "Back on March 20, 2026",

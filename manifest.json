@@ -36,7 +36,9 @@
       "resources": [
         "src/content/bootstrap.js",
         "src/shared/chess-url.js",
+        "src/shared/content-detection.js",
         "src/shared/date.js",
+        "src/shared/daily-limit.js",
         "src/shared/lock-state.js",
         "src/shared/loss-signals.js"
       ],

@@ -1,7 +1,30 @@
 import { formatDateKeyForEnglishCopy } from "./date.js";
+import { DEFAULT_DAILY_DEFEAT_LIMIT, normalizeDailyDefeatLimit } from "./daily-limit.js";
 
 function hasActiveLock(status) {
   return Boolean(status?.isLocked && status.unlockDateKey);
+}
+
+function getDailyDefeatLimit(status) {
+  return normalizeDailyDefeatLimit(status?.dailyDefeatLimit ?? DEFAULT_DAILY_DEFEAT_LIMIT);
+}
+
+function getTodayDefeatCount(status) {
+  const count = Number.parseInt(status?.todayDefeatCount ?? 0, 10);
+
+  if (!Number.isFinite(count) || count < 0) {
+    return 0;
+  }
+
+  return count;
+}
+
+function formatDefeatWord(count) {
+  return count === 1 ? "defeat" : "defeats";
+}
+
+function formatDefeatUsage(count, limit) {
+  return `${count} of ${limit} ${formatDefeatWord(limit)} used`;
 }
 
 function shortenSourceUrl(sourceUrl) {
@@ -19,15 +42,18 @@ function shortenSourceUrl(sourceUrl) {
 }
 
 export function buildPopupViewModel(status) {
+  const dailyDefeatLimit = getDailyDefeatLimit(status);
+  const todayDefeatCount = getTodayDefeatCount(status);
+
   if (!hasActiveLock(status)) {
     return {
       bodyState: "active",
       chipLabel: "Monitoring",
       title: "Ready for the next game",
-      copy: "If Chess.com shows a loss today, No Tilt Chess will lock the site until tomorrow.",
-      statusValue: "Watching for losses",
+      copy: `No Tilt Chess will lock Chess.com once you reach ${dailyDefeatLimit} ${formatDefeatWord(dailyDefeatLimit)} today.`,
+      statusValue: formatDefeatUsage(todayDefeatCount, dailyDefeatLimit),
       unlockValue: "Not locked",
-      accentLabel: "Loss cooldown",
+      accentLabel: "Daily defeat limit",
     };
   }
 
@@ -35,10 +61,10 @@ export function buildPopupViewModel(status) {
     bodyState: "locked",
     chipLabel: "Locked",
     title: "Daily cooldown is active",
-    copy: "A loss was detected today. Chess.com stays blocked until the next local day.",
-    statusValue: "Cooldown running",
+    copy: "Today's defeat limit was reached. Chess.com stays blocked until the next local day.",
+    statusValue: formatDefeatUsage(Math.max(todayDefeatCount, dailyDefeatLimit), dailyDefeatLimit),
     unlockValue: formatDateKeyForEnglishCopy(status.unlockDateKey),
-    accentLabel: "Loss detected",
+    accentLabel: "Limit reached",
   };
 }
 
@@ -52,7 +78,7 @@ export function buildBlockedPageViewModel({ status, sourceUrl }) {
       railStatus: "Access restored",
       headline: "The board is live again.",
       copy: "The daily lock has expired. Chess.com is available again.",
-      coachCopy: "Fresh day, fresh session. The counter is back at zero.",
+      coachCopy: "Fresh day, fresh session. Your defeat counter is back at zero.",
       unlockDate: "Available now",
       unlockLabel: "No active lock",
       sessionMeter: "No lock set",
@@ -65,9 +91,9 @@ export function buildBlockedPageViewModel({ status, sourceUrl }) {
   return {
     bodyState: "locked",
     chipLabel: "Locked for today",
-    railStatus: "Daily cooldown active",
+    railStatus: "Daily limit reached",
     headline: "Tilt protection is on.",
-    copy: "A loss was detected on Chess.com. Step away now and come back tomorrow with a clean slate.",
+    copy: "Today's defeat limit was reached on Chess.com. Step away now and come back tomorrow with a clean slate.",
     coachCopy: "Use the cooldown. Immediate rematches usually cost more than they win back.",
     unlockDate,
     unlockLabel: `Back on ${unlockDate}`,

@@ -1,3 +1,4 @@
+import { buildLossFingerprint, shouldReportLossFingerprint } from "../shared/content-detection.js";
 import { evaluateLossSignals } from "../shared/loss-signals.js";
 
 const ANALYZE_DELAY_MS = 300;
@@ -72,9 +73,9 @@ function injectTransitionStyles() {
       place-items: center;
       padding: 24px;
       background:
-        radial-gradient(circle at top right, rgba(132, 168, 79, 0.18), transparent 28%),
-        radial-gradient(circle at top left, rgba(123, 153, 170, 0.16), transparent 24%),
-        rgba(19, 16, 13, 0.78);
+        radial-gradient(circle at top right, rgba(105, 146, 62, 0.18), transparent 28%),
+        radial-gradient(circle at top left, rgba(78, 120, 55, 0.14), transparent 24%),
+        rgba(44, 43, 41, 0.8);
       backdrop-filter: blur(14px);
       animation: no-tilt-fade-in 320ms ease-out both;
     }
@@ -87,12 +88,12 @@ function injectTransitionStyles() {
       width: min(100%, 448px);
       padding: 26px;
       border-radius: 24px;
-      border: 1px solid rgba(255, 244, 225, 0.14);
-      color: #f6efdf;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Helvetica, Arial, sans-serif;
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), transparent 28%),
-        linear-gradient(180deg, rgba(31, 27, 22, 0.98), rgba(19, 16, 13, 0.98));
+        linear-gradient(180deg, rgba(75, 72, 71, 0.98), rgba(44, 43, 41, 0.98));
       box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.46),
         inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -135,7 +136,7 @@ function injectTransitionStyles() {
 
     #no-tilt-transition p {
       margin: 14px 0 0;
-      color: #d9ccb5;
+      color: rgba(255, 255, 255, 0.72);
       font-size: 16px;
       line-height: 1.6;
     }
@@ -153,13 +154,13 @@ function injectTransitionStyles() {
       height: 100%;
       width: 100%;
       transform-origin: left center;
-      background: linear-gradient(90deg, #95bb55, #628036);
+      background: linear-gradient(90deg, #69923e, #4e7837);
       animation: no-tilt-progress ${LOCK_TRANSITION_MS}ms linear forwards;
     }
 
     #no-tilt-transition .nt-footnote {
       margin-top: 14px;
-      color: #aa9c86;
+      color: rgba(255, 255, 255, 0.48);
       font-size: 13px;
       letter-spacing: 0.03em;
     }
@@ -234,7 +235,7 @@ export async function bootstrapContentScript() {
   window.__NO_TILT_CHESS_BOOTSTRAPPED__ = true;
 
   let analysisTimer = null;
-  let lossReported = false;
+  let lastReportedFingerprint = "";
 
   async function enforceBlockIfNeeded() {
     const status = await requestBlockEnforcement();
@@ -242,38 +243,54 @@ export async function bootstrapContentScript() {
   }
 
   async function analyzePage() {
-    if (lossReported || !document.body) {
+    if (!document.body) {
       return;
     }
 
+    const pageText = document.body.innerText;
     const evaluation = evaluateLossSignals({
-      pageText: document.body.innerText,
+      pageText,
       title: document.title,
       playerColor: inferPlayerColor(document),
     });
 
     if (!evaluation.shouldLock) {
+      lastReportedFingerprint = "";
       return;
     }
 
-    lossReported = true;
+    const fingerprint = buildLossFingerprint({
+      title: document.title,
+      pageText,
+    });
 
-    await chrome.runtime.sendMessage({
+    if (
+      !shouldReportLossFingerprint({
+        fingerprint,
+        lastReportedFingerprint,
+      })
+    ) {
+      return;
+    }
+
+    const response = await chrome.runtime.sendMessage({
       type: "LOSS_DETECTED",
       url: window.location.href,
       evaluation,
       deferRedirect: true,
     });
 
+    lastReportedFingerprint = fingerprint;
+
+    if (!response?.shouldBlock) {
+      return;
+    }
+
     await playLockTransition();
     await requestBlockEnforcement();
   }
 
   function scheduleAnalysis() {
-    if (lossReported) {
-      return;
-    }
-
     clearTimeout(analysisTimer);
     analysisTimer = window.setTimeout(() => {
       void analyzePage();
@@ -281,6 +298,8 @@ export async function bootstrapContentScript() {
   }
 
   async function handleRouteChange() {
+    lastReportedFingerprint = "";
+
     if (await enforceBlockIfNeeded()) {
       return;
     }
